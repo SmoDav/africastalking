@@ -1,0 +1,39 @@
+{
+    "name": "smodav/africastalking",
+    "description": "Africa's Talking API package",
+    "type": "library",
+    "keywords": ["sms", "ussd", "calls", "africas talking", "payments"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SmoDav",
+            "email": "smodavprivate@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/AfricasTalking/Support/helpers.php",
+            "src/AfricasTalking/Support/constants.php"
+        ],
+        "psr-4": {
+            "SmoDav\\AfricasTalking\\": "src/AfricasTalking/"
+        }
+    },
+     "autoload-dev": {
+        "psr-4": {
+            "SmoDav\\AfricasTalking\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "illuminate/support": "^5.0",
+        "nesbot/carbon": "~1.21",
+        "predis/predis": "^1.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master",
+        "phpunit/phpunit": "~5.7|~6.2"
+    },
+    "minimum-stability": "stable"
+}
