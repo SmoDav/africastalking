@@ -123,11 +123,7 @@ class Subscriber
      */
     public function unsubscribe($mobile)
     {
-        if (! strlen($mobile)) {
-            throw new GatewayException('Please enter a valid mobile number.');
-        }
-
-        $this->mobile = $mobile;
+        $this->subscribe($mobile);
         $this->subscribe = false;
 
         return $this;
