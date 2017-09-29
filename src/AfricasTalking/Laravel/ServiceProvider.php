@@ -2,6 +2,8 @@
 
 namespace SmoDav\AfricasTalking\Laravel;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Illuminate\Support\ServiceProvider as RootProvider;
 use SmoDav\AfricasTalking\Contracts\ConfigurationStore;
 use SmoDav\AfricasTalking\Laravel\Facades\SMS;
@@ -32,6 +34,9 @@ class ServiceProvider extends RootProvider
     private function bindInstances()
     {
         $this->app->bind(ConfigurationStore::class, LaravelConfig::class);
+        $this->app->bind(ClientInterface::class, function () {
+            return new Client();
+        });
     }
 
     private function registerFacades()

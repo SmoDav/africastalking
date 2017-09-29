@@ -234,9 +234,11 @@ class Mailman
      */
     public function fetch($lastId = 0)
     {
-        return $this->sendRequest($this->config->getSMSUrl(), [
+        $response = $this->sendRequest($this->config->getSMSUrl(), [
             'username' => $this->config->username,
             'lastReceivedId' => $lastId,
         ], 'GET');
+
+        return $response->SMSMessageData->Messages;
     }
 }

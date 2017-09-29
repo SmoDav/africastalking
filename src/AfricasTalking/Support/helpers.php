@@ -22,3 +22,16 @@ function sms($to, $message, $from = null, $options = [], $bulkMode = true)
 
     return $mailman->send();
 }
+
+function fetchSms($lastFetchedId = 0)
+{
+    if (! $config = Config::$instance) {
+        if (! function_exists('app')) {
+            throw new Exception('You need to instantiate the configuration first');
+        }
+
+        $config = app()->make(Config::class);
+    }
+
+    return (new Mailman($config))->fetch($lastFetchedId);
+}
