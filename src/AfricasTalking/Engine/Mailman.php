@@ -138,10 +138,23 @@ class Mailman
     /**
      * Sent the message to the numbers.
      *
+     * @param $mobile
+     * @param $message
+     * @param null $from
+     * @param bool $bulkMode
+     * @param array $options
      * @return array|mixed
      */
-    public function send()
+    public function send($mobile, $message, $from = null, $options = [], $bulkMode = true)
     {
+        $this->to($mobile);
+        $this->message($message);
+        $this->from($from);
+        $this->withOptions($options);
+        if (! $bulkMode) {
+            $this->inSingleMode();
+        }
+
         return $this->sendRequest($this->config->getSMSUrl(), $this->setupParameters());
     }
 
