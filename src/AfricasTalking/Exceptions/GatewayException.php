@@ -2,7 +2,15 @@
 
 namespace SmoDav\AfricasTalking\Exceptions;
 
-class GatewayException
-{
+use Exception;
 
+/**
+ * Class GatewayException.
+ *
+ * @category PHP
+ *
+ * @author   David Mjomba <smodavprivate@gmail.com>
+ */
+class GatewayException extends Exception
+{
 }
