@@ -140,9 +140,10 @@ class Mailman
      *
      * @param $mobile
      * @param $message
-     * @param null $from
-     * @param bool $bulkMode
+     * @param null  $from
+     * @param bool  $bulkMode
      * @param array $options
+     *
      * @return array|mixed
      */
     public function send($mobile, $message, $from = null, $options = [], $bulkMode = true)

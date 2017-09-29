@@ -41,7 +41,8 @@
                 "SmoDav\\AfricasTalking\\Laravel\\ServiceProvider"
             ],
             "aliases": {
-                "SMS": "SmoDav\\AfricasTalking\\Laravel\\Facades\\SMS"
+                "SMS": "SmoDav\\AfricasTalking\\Laravel\\Facades\\SMS",
+                "Subscriber": "SmoDav\\AfricasTalking\\Laravel\\Facades\\Subscriber"
             }
         }
     },

@@ -70,3 +70,17 @@ function unsubscribeMobile($mobile, $shortCode, $keyword)
         ->usingKeyword($keyword)
         ->send();
 }
+
+function subscriptions($shortCode, $keyword, $lastReceived = 0)
+{
+    if (! $config = Config::$instance) {
+        if (! function_exists('app')) {
+            throw new Exception('You need to instantiate the configuration first');
+        }
+
+        $config = app()->make(Config::class);
+    }
+
+    return (new Subscriber($config))
+        ->getSubscriptions($shortCode, $keyword, $lastReceived);
+}

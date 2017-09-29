@@ -150,6 +150,20 @@ class Subscriber
     }
 
     /**
+     * Setup the short-code.
+     *
+     * @param $shortCode
+     *
+     * @return $this
+     *
+     * @throws GatewayException
+     */
+    public function fromCode($shortCode)
+    {
+        return $this->toCode($shortCode);
+    }
+
+    /**
      * Setup the keyword to be used.
      *
      * @param $keyword
