@@ -18,6 +18,5 @@ class TestCase extends PHPUnit
      **/
     public function setUp()
     {
-
     }
 }

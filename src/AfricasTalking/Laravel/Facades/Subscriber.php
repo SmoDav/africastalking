@@ -5,13 +5,13 @@ namespace SmoDav\AfricasTalking\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class SMS
+ * Class Subscriber
  *
  * @category PHP
  *
  * @author   David Mjomba <smodavprivate@gmail.com>
  */
-class SMS extends Facade
+class Subscriber extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -20,6 +20,6 @@ class SMS extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'at_sms';
+        return 'at_subscriber';
     }
 }

@@ -140,4 +140,14 @@ class Config
     {
         return $this->getUrl(self::API, '/version1/user' . $extension);
     }
+
+    public function getSubscriptionURL($extension = '')
+    {
+        return $this->getUrl(self::API, '/version1/subscription'. $extension);
+    }
+
+    public function getTokenURL()
+    {
+        return $this->getUrl(self::API, '/checkout/token/create');
+    }
 }

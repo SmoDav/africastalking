@@ -7,7 +7,7 @@ use GuzzleHttp\ClientInterface;
 use Illuminate\Support\ServiceProvider as RootProvider;
 use SmoDav\AfricasTalking\Contracts\ConfigurationStore;
 use SmoDav\AfricasTalking\Engine\Mailman;
-use SmoDav\AfricasTalking\Laravel\Facades\SMS;
+use SmoDav\AfricasTalking\Engine\Subscriber;
 use SmoDav\AfricasTalking\Laravel\Stores\LaravelConfig;
 
 class ServiceProvider extends RootProvider
@@ -44,6 +44,9 @@ class ServiceProvider extends RootProvider
     {
         $this->app->bind('at_sms', function () {
             return $this->app->make(Mailman::class);
+        });
+        $this->app->bind('at_subscriber', function () {
+            return $this->app->make(Subscriber::class);
         });
     }
 }
