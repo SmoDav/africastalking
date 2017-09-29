@@ -35,5 +35,15 @@
         "mockery/mockery": "dev-master",
         "phpunit/phpunit": "~5.7|~6.2"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SmoDav\\AfricasTalking\\Laravel\\ServiceProvider"
+            ],
+            "aliases": {
+                "SMS": "SmoDav\\AfricasTalking\\Laravel\\Facades\\SMS"
+            }
+        }
+    },
     "minimum-stability": "stable"
 }
