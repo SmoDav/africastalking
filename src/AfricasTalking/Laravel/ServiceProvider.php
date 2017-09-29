@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\ServiceProvider as RootProvider;
 use SmoDav\AfricasTalking\Contracts\ConfigurationStore;
+use SmoDav\AfricasTalking\Engine\Mailman;
 use SmoDav\AfricasTalking\Laravel\Facades\SMS;
 use SmoDav\AfricasTalking\Laravel\Stores\LaravelConfig;
 
@@ -42,7 +43,7 @@ class ServiceProvider extends RootProvider
     private function registerFacades()
     {
         $this->app->bind('at_sms', function () {
-            return $this->app->make(SMS::class);
+            return $this->app->make(Mailman::class);
         });
     }
 }
