@@ -6,7 +6,11 @@ use SmoDav\AfricasTalking\Engine\Mailman;
 function sms($to, $message, $from = null, $options = [], $bulkMode = true)
 {
     if (! $config = Config::$instance) {
-        throw new Exception('You need to instantiate the configuration first');
+        if (! function_exists('app')) {
+            throw new Exception('You need to instantiate the configuration first');
+        }
+
+        $config = app()->make(Config::class);
     }
 
     $mailman = new Mailman($config);
