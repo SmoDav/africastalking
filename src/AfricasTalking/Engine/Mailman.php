@@ -146,10 +146,22 @@ class Mailman
      *
      * @return array|mixed
      */
-    public function send($mobile, $message, $from = null, $options = [], $bulkMode = true)
+    public function send($mobile = null, $message = null, $from = null, $options = [], $bulkMode = true)
     {
-        $this->to($mobile);
-        $this->message($message);
+        if (!$mobile && empty($this->mobile)){{
+            throw new \Exception("Phone number is required");
+        }}
+
+        if (!$message && empty($this->message)){{
+            throw new \Exception("Message is required");
+        }}
+
+        if ($mobile){
+            $this->to($mobile);
+        }
+        if ($message){
+            $this->message($message);
+        }
         $this->from($from);
         $this->withOptions($options);
         if (! $bulkMode) {
