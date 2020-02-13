@@ -1,5 +1,5 @@
 {
-    "name": "smodav/sms",
+    "name": "smodav/africastalking",
     "description": "Africa's Talking API package",
     "type": "library",
     "keywords": ["sms", "ussd", "calls", "africas talking", "payments"],
