@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Facade;
  *
  * @category PHP
  *
- * @author   David Mjomba <smodavprivate@gmail.com>
+ * @method static \AfricasTalking\SDK\SMS send(array $options)
+ * @method static \AfricasTalking\SDK\SMS sendPremium(array $options)
+ * @method static \AfricasTalking\SDK\SMS fetchMessages(array $options = [])
+ * @method static \AfricasTalking\SDK\SMS createSubscription array ($options)
+ * @method static \AfricasTalking\SDK\SMS deleteSubscription array ($options)
+ * @method static \AfricasTalking\SDK\SMS fetchSubscriptions(array $options)
+ *
+ * @see \AfricasTalking\SDK\SMS
  */
 class SMS extends Facade
 {

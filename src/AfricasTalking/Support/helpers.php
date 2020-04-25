@@ -1,86 +1,62 @@
 <?php
 
-use SmoDav\AfricasTalking\Config\Config;
-use SmoDav\AfricasTalking\Engine\Mailman;
-use SmoDav\AfricasTalking\Engine\Subscriber;
+use SmoDav\AfricasTalking\Engine\Runner;
 
-function sms($to, $message, $from = null, $options = [], $bulkMode = true)
-{
-    if (! $config = Config::$instance) {
-        if (! function_exists('app')) {
-            throw new Exception('You need to instantiate the configuration first');
+if (!function_exists('sms')) {
+    function sms(array $numbers = [], string $message = null, int $from = null, bool $enqueue = false)
+    {
+        if (func_num_args() === 0) {
+            return Runner::instance()->sms();
         }
 
-        $config = app()->make(Config::class);
+        return Runner::instance()->sms()->send([
+            'enqueue' => $enqueue,
+            'from' => $from,
+            'message' => $message,
+            'to' => $numbers,
+        ]);
     }
-
-    $mailman = new Mailman($config);
-    $mailman = $mailman->to($to)->message($message)->from($from)->withOptions($options);
-
-    if (! $bulkMode) {
-        $mailman->inSingleMode();
-    }
-
-    return $mailman->send();
 }
 
-function fetchSms($lastFetchedId = 0)
-{
-    if (! $config = Config::$instance) {
-        if (! function_exists('app')) {
-            throw new Exception('You need to instantiate the configuration first');
-        }
-
-        $config = app()->make(Config::class);
+if (!function_exists('fetchSms')) {
+    function fetchSms(int $lastReceivedId = 0)
+    {
+        return Runner::instance()->sms()->fetchMessages(['lastReceivedId' => $lastReceivedId]);
     }
-
-    return (new Mailman($config))->fetch($lastFetchedId);
 }
 
-function subscribeMobile($mobile, $shortCode, $keyword)
-{
-    if (! $config = Config::$instance) {
-        if (! function_exists('app')) {
-            throw new Exception('You need to instantiate the configuration first');
-        }
+if (!function_exists('subscribeMobile')) {
+    function subscribeMobile(string $mobile, int $shortCode, string $keyword)
+    {
+        $token = Runner::instance()->token()->createCheckoutToken(['phoneNumber' => $mobile]);
 
-        $config = app()->make(Config::class);
+        return Runner::instance()->sms()->createSubscription([
+            'shortCode' => $shortCode,
+            'keyword' => $keyword,
+            'phoneNumber' => $mobile,
+            'checkoutToken' => $token['data']->token,
+        ]);
     }
-
-    return (new Subscriber($config))
-        ->subscribe($mobile)
-        ->toCode($shortCode)
-        ->usingKeyword($keyword)
-        ->send();
 }
 
-function unsubscribeMobile($mobile, $shortCode, $keyword)
-{
-    if (! $config = Config::$instance) {
-        if (! function_exists('app')) {
-            throw new Exception('You need to instantiate the configuration first');
-        }
-
-        $config = app()->make(Config::class);
+if (!function_exists('subscriptions')) {
+    function subscriptions(int $shortCode, string $keyword, int $lastReceivedId = 0)
+    {
+        return Runner::instance()->sms()->fetchSubscriptions([
+            'shortCode' => $shortCode,
+            'keyword' => $keyword,
+            'lastReceivedId' => $lastReceivedId,
+        ]);
     }
-
-    return (new Subscriber($config))
-        ->unsubscribe($mobile)
-        ->toCode($shortCode)
-        ->usingKeyword($keyword)
-        ->send();
 }
 
-function subscriptions($shortCode, $keyword, $lastReceived = 0)
-{
-    if (! $config = Config::$instance) {
-        if (! function_exists('app')) {
-            throw new Exception('You need to instantiate the configuration first');
-        }
-
-        $config = app()->make(Config::class);
+if (!function_exists('unsubscribeMobile')) {
+    function unsubscribeMobile(string $mobile, int $shortCode, string $keyword)
+    {
+        return Runner::instance()->sms()->deleteSubscription([
+            'shortCode' => $shortCode,
+            'keyword' => $keyword,
+            'phoneNumber' => $mobile,
+        ]);
     }
-
-    return (new Subscriber($config))
-        ->getSubscriptions($shortCode, $keyword, $lastReceived);
 }

@@ -5,13 +5,15 @@ namespace SmoDav\AfricasTalking\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Subscriber
+ * Class Airtime
  *
  * @category PHP
  *
- * @author   David Mjomba <smodavprivate@gmail.com>
+ * @method static \AfricasTalking\SDK\Airtime send(array $parameters, array $options = [])
+ *
+ * @see \AfricasTalking\SDK\Airtime
  */
-class Subscriber extends Facade
+class Airtime extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -20,6 +22,6 @@ class Subscriber extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'at_subscriber';
+        return 'at_airtime';
     }
 }

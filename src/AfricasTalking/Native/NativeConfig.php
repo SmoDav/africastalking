@@ -29,11 +29,11 @@ class NativeConfig implements ConfigurationStore
     {
         $defaultConfig = require __DIR__ . '/../../../config/africastalking.php';
         $custom        = [];
-        if (\is_file($userConfig)) {
+        if (is_file($userConfig)) {
             $custom = require $userConfig;
         }
 
-        $this->config = \array_merge($defaultConfig, $custom);
+        $this->config = array_merge($defaultConfig, $custom);
     }
 
     /**
@@ -46,7 +46,7 @@ class NativeConfig implements ConfigurationStore
      */
     public function get($key, $default = null)
     {
-        $itemKey = \explode('.', $key)[1];
+        $itemKey = explode('.', $key)[1];
 
         if (isset($this->config[$itemKey])) {
             return $this->config[$itemKey];

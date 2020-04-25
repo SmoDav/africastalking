@@ -6,11 +6,6 @@ use SmoDav\AfricasTalking\Tests\TestCase;
 
 class ConfigTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
     /**
      * Test that configuration store receives a call.
      *

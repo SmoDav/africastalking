@@ -1,8 +1,7 @@
-/.idea
+.php_cs.cache
+.phpunit.result.cache
+/.phpintel
+/cache
 /vendor
 composer.lock
-.php_cs.cache
 index.php
-/cache
-/.phpintel
-/config/ait.php

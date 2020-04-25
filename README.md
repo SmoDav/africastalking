@@ -5,7 +5,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/smodav/africastalking/v/unstable.svg)](https://packagist.org/packages/smodav/africastalking)
 [![License](https://poser.pugx.org/smodav/africastalking/license.svg)](https://packagist.org/packages/smodav/africastalking)
 
-This is a fluent implementation of the Africa's talking API. For more information checkout [this post](https://smodavproductions.com/blog/how-to-use-africas-talking-php-package)
+This is a fluent implementation of the Africa's talking API. For more information checkout [this post](https://smodavproductions.com/blog/how-to-use-africas-talking-php-package-v2)
 ## License
 
 The M-Pesa Package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
